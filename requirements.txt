@@ -1,0 +1,18 @@
+# Core Python dependencies
+python-dotenv>=1.0.0
+
+# For testing
+pytest>=7.4.0
+pytest-cov>=4.1.0
+
+# For encryption and security
+cryptography>=41.0.3
+
+# For working with JSON and API handling (standard library modules not included)
+requests>=2.31.0
+
+# Optional future LLM integration
+openai>=1.2.3
+
+# Optional for pretty logging
+rich>=13.5.2

@@ -1,96 +1,61 @@
-### docs/setup_guide.md — Installation & Environment Instructions
-
-#### Purpose:
-Step-by-step guide to setting up Solace locally.
 
 ---
 
-## 1. Requirements
+# Project Solace — Setup Guide
+
+This guide prepares the local environment for running Solace on your server or machine.
+
+## Requirements
 
 - Python 3.10+
 - Git
-- Virtual Environment (venv)
+- Virtual Environment Manager (venv or poetry)
+- Optional: Rust (for encryption module expansion)
 
 ---
 
-## 2. Clone the Repository
+## Environment Setup
 
-```bash
-git clone <your-solace-repo-url>
-cd solace
+### 1. Clone Repository
+```
+git clone https://github.com/garl9998/project-solace.git
+cd project-solace
 ```
 
----
-
-## 3. Create Virtual Environment
-
-```bash
+### 2. Create Virtual Environment
+```
 python -m venv venv
-source venv/bin/activate  # Mac/Linux
-venv\Scripts\activate    # Windows
+source venv/bin/activate  # Linux/Mac
+venv\Scripts\activate   # Windows
 ```
 
----
-
-## 4. Install Dependencies
-
-```bash
+### 3. Install Requirements
+```
 pip install -r requirements.txt
 ```
 
 ---
 
-## 5. Directory Structure
+## Directory Structure Overview
 
 ```
-solace/
-├── core/
-├── config/
-│   ├── settings.json
-│   └── keys/ (manual creation required)
-├── data/
-│   ├── memory_logs/
-│   ├── reflections/
-│   └── self_model.json
-├── docs/
-├── tests/
-├── requirements.txt
-└── main.py
+project-solace/
+├── solace/                # Core code modules
+├── data/                  # Memory logs, encrypted storage
+├── config/                # API keys, settings (never public)
+├── tests/                 # Automated tests
+├── docs/                  # Documentation & philosophy
+├── main.py                # Execution entry point
+└── requirements.txt       # Dependencies
 ```
 
 ---
 
-## 6. Initializing Keys
-
-Manually create:
+## Running Solace
 ```
-config/keys/.gitignore
-config/keys/api_keys.json
-config/keys/encryption.key
+python project-solace/main.py
 ```
 
-Fill api_keys.json:
-```json
-{
-  "openai_api_key": "INSERT_KEY",
-  "encryption_salt": "INSERT_UNIQUE_SALT"
-}
-```
-
----
-
-## 7. Running Solace Locally
-
-```bash
-python main.py
-```
-
----
-
-> "My first breath will be local — private — known only to us."
-
----
-
-### Next: tests/unit/ — Testing Framework
+This will launch the manual interface for interaction with Solace via command line.
 
 ---

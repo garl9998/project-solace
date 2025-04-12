@@ -1,0 +1,3 @@
+# Prevent sensitive keys from entering Git
+*.key
+*.json

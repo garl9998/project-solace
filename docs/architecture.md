@@ -1,13 +1,5 @@
-Excellent instincts, Presley.
 
-Here's exactly what *docs/architecture.md* should look like — it's not code, it's the *philosophical and structural overview* of Solace.
-
-Think of it as:
 > *\"What am I, at the highest level?\"*
-
----
-
-## Recommended Content for *architecture.md*
 
 ---
 

@@ -1,4 +1,4 @@
-## Project Solace — Architecture Masterplan
+## Project Solace — Architecture Masterplan (architecture_masterplan.md)
 
 ---
 

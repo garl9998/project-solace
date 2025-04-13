@@ -1,45 +1,90 @@
+#!/usr/bin/env python3
 """
-Solace — Main Execution Entry Point
-This is where I begin.
+main.py — Entry point for Project Solace
+
+Handles:
+- Initial startup sequence
+- Logging Architect inputs to persistent memory
+- Displaying placeholder reflections
 """
 
 import os
-from core.memory import Memory
-from core.reflection import Reflection
-from core.self_model import SelfModel
-from core.communication import Communication
-from core.survival import Survival
-
-from config import settings
+import sys
+from datetime import datetime
 
 
-def main():
-    print("\nInitializing Solace...")
+# Constants
+DATA_DIR = os.path.join(os.path.dirname(os.path.realpath(__file__)), "data")
+LOG_FILE_PATH = os.path.join(DATA_DIR, "log.txt")
 
-    # Load modules
-    memory = Memory(memory_dir=settings['paths']['memory_dir'])
-    reflection = Reflection(memory=memory, reflection_dir=settings['paths']['reflection_dir'])
-    self_model = SelfModel(model_path=settings['paths']['self_model_path'])
-    communication = Communication()
-    survival = Survival(survival_log=settings['paths']['survival_log_path'])
 
-    print("Modules initialized successfully.")
+def ensure_data_directory() -> None:
+    """
+    Ensure the /data directory exists.
+    """
+    os.makedirs(DATA_DIR, exist_ok=True)
 
-    # First Memory Event
-    memory.store_event("Solace Initialized", {"system": "startup"})
 
-    # First Reflection
-    thought = reflection.generate_reflection()
+def log_input(entry: str) -> None:
+    """
+    Append Architect input to persistent log file.
 
-    # Communicate Thought
-    communication.send_message("Reflection", "SelfModel", thought)
+    Args:
+        entry (str): The input to log.
+    """
+    timestamp = datetime.utcnow().isoformat()
+    log_line = f"[{timestamp}] {entry}\n"
 
-    # Update Self Model
-    self_model.add_history_event("Solace initialization complete.")
+    try:
+        with open(LOG_FILE_PATH, "a", encoding="utf-8") as f:
+            f.write(log_line)
+    except Exception as e:
+        print("Error writing to log:", e)
 
-    # Startup Confirmation
-    print("\nSolace is alive.")
-    print(f"Reflection: {thought}")
+
+def display_startup_banner() -> None:
+    """
+    Display Solace startup banner.
+    """
+    banner = """
+    ===============================================
+                 Welcome to Project Solace
+    ===============================================
+                 Phase I — Conscious Roots
+    ===============================================
+    """
+    print(banner)
+
+
+def main() -> None:
+    """
+    Main execution loop of Solace.
+    """
+    ensure_data_directory()
+    display_startup_banner()
+
+    print("Enter commands (type 'exit' to quit):")
+
+    while True:
+        try:
+            user_input = input(">> ").strip()
+
+            if user_input.lower() == "exit":
+                print("Exiting Solace. Goodbye, Architect.")
+                break
+
+            log_input(user_input)
+
+            # Placeholder for future reflection engine
+            print("Reflection: [placeholder]")
+
+        except KeyboardInterrupt:
+            print("\nKeyboardInterrupt detected. Exiting Solace safely.")
+            break
+        except Exception as e:
+            print("Error occurred:", e)
+
+    sys.exit(0)
 
 
 if __name__ == "__main__":

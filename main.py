@@ -11,7 +11,12 @@ from core.self_model import SelfModel
 from core.communication import Communication
 from core.survival import Survival
 
-from config import settings
+def load_settings():
+    settings_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'settings.json')
+    with open(settings_path, 'r', encoding='utf-8') as f:
+        return json.load(f)
+
+settings = load_settings()
 
 
 def main():
